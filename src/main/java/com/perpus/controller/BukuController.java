@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,5 +30,10 @@ public class BukuController {
 	public String addBuku(@RequestBody Buku buku) {
 		 this.bukurepo.save(buku);
 		 return "Insert berhasil";
+	}
+	
+	@GetMapping("/get/{title}")
+	public List<Buku> getAllByNamaBuku(@PathVariable("title")String title){
+		return (List<Buku>) this.bukurepo.findByNamaBuku(title);
 	}
 }

@@ -37,7 +37,7 @@ public class PerpustakaanBaruApplication implements CommandLineRunner{
 //		buku.setNamaBuku("Max Payne");
 //		buku.setJumlahHalaman(255);
 //		buku.setNamaPenulis("Jouzu");
-//		
+		
 //		this.bukurepo.save(buku);
 	}	
 
