@@ -35,22 +35,22 @@ public class BiodataController {
 		return "Insert berhasil";
 	}
 
-	@GetMapping("/get/{nama}")
+	@GetMapping("/get/nama/{nama}")
 	public List<Biodata> getAllByNama(@PathVariable String nama) {
 		return (List<Biodata>) this.biorepo.findByNama(nama);
 	}
 	
-	@GetMapping("/get/{email}")
+	@GetMapping("/get/email/{email}")
 	public List<Biodata> getAllByEmail(@PathVariable String email) {
 		return (List<Biodata>) this.biorepo.findByEmail(email);
 	}
 	
-	@GetMapping("/get/{phone}")
+	@GetMapping("/get/phone/{phone}")
 	public List<Biodata> getAllByPhone(@PathVariable String phone) {
 		return (List<Biodata>) this.biorepo.findByPhone(phone);
 	}
 	
-	@GetMapping("/get/{address}")
+	@GetMapping("/get/address/{address}")
 	public List<Biodata> getAllByAddress(@PathVariable String address) {
 		return (List<Biodata>) this.biorepo.findByAddress(address);
 	}
