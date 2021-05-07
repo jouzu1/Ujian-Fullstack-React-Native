@@ -21,19 +21,26 @@ export class List extends Component {
         super(props);
         this.state = {
             dataBiodata: [],
+            dataGet:"",
         };
     }
 
+    // componentDidCatch(){
+    //     this.getData();
+    // }
     componentDidMount() {
-        this.getData();
+        // this.getData();
+        this.findData();
     }
 
     componentDidUpdate() {
-        this.getData();
+        // this.getData();
+        this.findData();
     }
 
-    getData = () => {
-        axios.get('http://526249c8fbe3.ngrok.io/biodata/get')
+
+    findData = () => {
+        axios.get(`http://526249c8fbe3.ngrok.io/biodata/${this.state.dataGet}`)
             .then((res) => {
                 //   console.log(res.data);
                 this.setState({ dataBiodata: res.data });
@@ -52,6 +59,7 @@ export class List extends Component {
     render() {
         return (
             <SafeAreaView>
+                <TextInput placeholder="Cari" style={styles.loginButtonSection1} onChangeText={(data) => { this.setState({ dataGet: data })}} />
                 <FlatList
                     data={this.state.dataBiodata}
                     renderItem={this.renderItem}
@@ -64,10 +72,18 @@ export class List extends Component {
 }
 
 const styles = StyleSheet.create({
+    loginButtonSection1: {
+        width: '100%',
+        // height: '30%',
+        backgroundColor: "grey",
+        justifyContent: 'center',
+        alignItems: 'center',
+        color:'black'
+    },
     loginButtonSection: {
         width: '100%',
         height: '30%',
-        backgroundColor: "red",
+        backgroundColor: "yellow",
         justifyContent: 'center',
         alignItems: 'center',
         color:'black'
