@@ -28,7 +28,7 @@ export class List extends Component {
         this.getData();
     }
 
-    componentDidUpdate(){
+    componentDidUpdate() {
         this.getData();
     }
 
@@ -56,8 +56,8 @@ export class List extends Component {
                     data={this.state.dataBiodata}
                     renderItem={this.renderItem}
                     keyExtractor={item => item.id}
-                 />
-                <TouchableOpacity style={styles.button} onPress={()=>{this.props.navigation.replace('Register')}}><Text>REGISTER</Text></TouchableOpacity>
+                />
+                <TouchableOpacity style={styles.loginButtonSection} onPress={() => { this.props.navigation.replace('Register') }}><Text>REGISTER</Text></TouchableOpacity>
             </SafeAreaView>
         );
     }
@@ -67,8 +67,10 @@ const styles = StyleSheet.create({
     loginButtonSection: {
         width: '100%',
         height: '30%',
+        backgroundColor: "red",
         justifyContent: 'center',
         alignItems: 'center',
+        color:'black'
     },
     loginTextSection: {
         width: '100%',
@@ -96,18 +98,18 @@ const styles = StyleSheet.create({
         fontSize: 32,
     },
     button: {
-      alignItems: "center",
-      backgroundColor: "red",
-      padding: 10,
-    //   height:'100'
+        alignItems: "center",
+        backgroundColor: "red",
+        padding: 10,
+        //   height:'100'
     },
     bluebutton: {
-      alignItems: "center",
-      backgroundColor: "blue",
-      padding: 10,
-      color:'white'
+        alignItems: "center",
+        backgroundColor: "blue",
+        padding: 10,
+        color: 'white'
     },
-  })
+})
 
 
 export default List;
