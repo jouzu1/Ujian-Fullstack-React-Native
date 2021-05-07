@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
       alignItems: "center",
       backgroundColor: "red",
       padding: 10,
-      height:'100'
+    //   height:'100'
     },
     bluebutton: {
       alignItems: "center",
