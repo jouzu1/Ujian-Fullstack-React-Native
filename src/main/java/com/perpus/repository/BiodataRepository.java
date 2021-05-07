@@ -11,6 +11,15 @@ import com.perpus.entity.Biodata;
 public interface BiodataRepository extends CrudRepository<Biodata, Long>{
 //	List<Buku> findByNamaBuku(String namaBuku);
 	
-	@Query(value = "select * from buku where nama_buku like %?1%",nativeQuery=true)
-	List<Biodata> findByNamaBuku( String namaBuku);
+	@Query(value = "select * from biodata where nama like %?1%",nativeQuery=true)
+	List<Biodata> findByNama(String nama);
+	
+	@Query(value = "select * from biodata where email like %?1%",nativeQuery=true)
+	List<Biodata> findByEmail(String email);
+	
+	@Query(value = "select * from biodata where phone like %?1%",nativeQuery=true)
+	List<Biodata> findByPhone(String phone);
+	
+	@Query(value = "select * from biodata where address like %?1%",nativeQuery=true)
+	List<Biodata> findByAddress(String address);
 }

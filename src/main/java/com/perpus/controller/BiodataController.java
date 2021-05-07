@@ -16,39 +16,39 @@ import org.springframework.web.bind.annotation.RestController;
 import com.perpus.entity.Biodata;
 import com.perpus.repository.BiodataRepository;
 
-@CrossOrigin(origins = "http://localhost:3030")
+//@CrossOrigin(origins = "http://localhost:3030")
 @RestController
-@RequestMapping("/buku")
+@RequestMapping("/biodata")
 public class BiodataController {
 	@Autowired
-	BiodataRepository bukurepo;
+	BiodataRepository biorepo;
 
-	@CrossOrigin(origins = "http://localhost:3030")
+//	@CrossOrigin(origins = "http://localhost:3030")
 	@GetMapping("/get")
 	public List<Biodata> getAll() {
-		return (List<Biodata>) this.bukurepo.findAll();
+		return (List<Biodata>) this.biorepo.findAll();
 	}
 
 	@PostMapping("/add")
-	public String addBuku(@RequestBody Biodata buku) {
-		this.bukurepo.save(buku);
+	public String addBuku(@RequestBody Biodata bio) {
+		this.biorepo.save(bio);
 		return "Insert berhasil";
 	}
 
-	@GetMapping("/get/{title}")
-	public List<Biodata> getAllByNamaBuku(@PathVariable("title") String title) {
-		return (List<Biodata>) this.bukurepo.findByNamaBuku(title);
+	@GetMapping("/get/{nama}")
+	public List<Biodata> getAllByNama(@PathVariable String nama) {
+		return (List<Biodata>) this.biorepo.findByNama(nama);
 	}
 
 	@DeleteMapping("/delete/{id}")
 	public String getDelete(@PathVariable String id){
-		this.bukurepo.deleteById(Long.parseLong(id));
+		this.biorepo.deleteById(Long.parseLong(id));
 		return "Berhasil Dihapus";
 	}
 	@PutMapping("/update/{id}")
-	public String updateBuku(@PathVariable String id, @RequestBody Biodata buku) {
-		buku.setId(Long.parseLong(id));
-		this.bukurepo.save(buku);
+	public String updateBio(@PathVariable long id, @RequestBody Biodata bio) {
+		bio.setId(id);
+		this.biorepo.save(bio);
 		return "Berhasil Di Update";
 	}
 		
