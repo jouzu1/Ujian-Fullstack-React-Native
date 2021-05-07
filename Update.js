@@ -1,22 +1,28 @@
 /* eslint-disable prettier/prettier */
 import React, { Component } from 'react'
-import { Text, View, Alert, TextInput, Button, StyleSheet, StatusBar, TouchableOpacity} from 'react-native'
-import axios from 'axios'
+import { Text, View, TextInput, Button, TouchableOpacity, StyleSheet, StatusBar} from 'react-native'
+import axios from'axios'
 
-export class Register extends Component {
+export class Update extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            nama: "",
-            email: "",
-            phone: "",
-            address:""
+            id:this.props.route.params.id,
+            nama: this.props.route.params.nama,
+            email: this.props.route.params.email,
+            phone: this.props.route.params.phone,
+            address:this.props.route.params.address
         }
     }
 
-    handleAdd() {
-        // console.log(this.state)
-        axios.post(`http://526249c8fbe3.ngrok.io/biodata/add`, this.state)
+    componentDidMount(){
+        // this.handleUpdate();
+        console.log(this.props)
+    }
+
+    handleUpdate() {
+        console.log(this.state)
+        axios.put(`http://526249c8fbe3.ngrok.io/biodata/update/${this.state.id}`, this.state)
             .then((res) => {
                 // console.log(res)
                 // alert("Data Berhasil Dimasukkan")
@@ -36,20 +42,19 @@ export class Register extends Component {
                 alert(error.message);
             })
     }
-
     render() {
         return (
-            <View>
-                <Text> Username </Text>
-                <TextInput style={{ borderWidth: 1, color:'black'}} placeholder="Nama" onChangeText={(data) => { this.setState({ nama: data })}} />
-                <Text> Email </Text>
-                <TextInput style={{ borderWidth: 1, color:'black'}} placeholder="Email"  onChangeText={(data) => { this.setState({ email: data }) }} />
-                <Text> Phone </Text>
-                <TextInput style={{ borderWidth: 1, color:'black'}} placeholder="Phone" keyboardType='numeric' onChangeText={(data) => { this.setState({ phone: parseInt(data) }) }} />
-                <Text> Address </Text>
-                <TextInput style={{ borderWidth: 1, color:'black'}} placeholder="Address" onChangeText={(data) => { this.setState({ address: data }) }} />
+            <View style={{ borderWidth: 5 }}>
+                <Text> Update Nama </Text>
+                <TextInput value={this.state.nama} onChangeText={(data) => { this.setState({ nama: data }) }} />
+                <Text> Update Email </Text>
+                <TextInput value={this.state.email}  onChangeText={(data) => { this.setState({ email: data }) }} />
+                <Text> Update Nomor HP </Text>
+                <TextInput value={String(this.state.phone)} keyboardType='numeric' onChangeText={(data) => { this.setState({ phone: parseInt(data) }) }} />
+                <Text> Update Alamat </Text>
+                <TextInput value={this.state.address} onChangeText={(data) => { this.setState({ address: data }) }} />
                 <View style={styles.loginButtonSection}>
-                    <Button title="Submit" onPress={this.handleAdd.bind(this)}/>
+                    <Button title="Submit" onPress={this.handleUpdate.bind(this)}/>
                 </View>
                 <TouchableOpacity style={styles.button} onPress={()=>{this.props.navigation.replace('List')}}><Text>LIST</Text></TouchableOpacity>
             </View>
@@ -97,4 +102,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default Register
+export default Update

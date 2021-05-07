@@ -21,7 +21,7 @@ export class List extends Component {
         super(props);
         this.state = {
             dataBiodata: [],
-            dataGet:"",
+            dataGet: "",
         };
     }
 
@@ -47,19 +47,48 @@ export class List extends Component {
             });
     };
 
+    deleteData = (id) => {
+        // axios.get(' http://5189d5f9efe2.ngrok.io/buku/get')
+        axios.delete(`http://526249c8fbe3.ngrok.io/biodata/delete/${id}`)
+            .then((res) => {
+                // console.log(res)
+                alert(res.data)
+                // console.log(res.data.userId)
+                // console.log(res.data.id)
+                // console.log(res.data.title)
+                // console.log(res.data.completed)
+                // this.setState({dataqu : res.data})
+            }).then(() => {
+                // console.log(JSON.stringify(this.state.data[0].title))
+            }).catch((error) => {
+                alert(error.message);
+            })
+    }
+
     renderItem = ({ item }) => (
         <SafeAreaView style={styles.item}>
             <Text >Name     :   {item.nama}</Text>
             <Text >Email    :   {item.email}</Text>
             <Text >Phone    :   {item.phone}</Text>
             <Text >Address  :   {item.address}</Text>
+            <TouchableOpacity onPress={() => { this.props.navigation.replace('Update', item) }} style={styles.bluebutton}><Text>Update Data</Text></TouchableOpacity>
+            <TouchableOpacity onPress={() => {
+                Alert.alert(
+                    "Delete",
+                    "Hapus Data",
+                    [
+                        { text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel' },
+                        { text: 'OK', onPress: () => this.deleteData(item.id) }
+                    ]
+                )
+            }} style={styles.bluebutton}><Text>Delete Data</Text></TouchableOpacity>
         </SafeAreaView>
     );
 
     render() {
         return (
             <SafeAreaView>
-                <TextInput placeholder="Cari" style={styles.loginButtonSection1} onChangeText={(data) => { this.setState({ dataGet: data })}} />
+                <TextInput placeholder="Cari" style={styles.loginButtonSection1} onChangeText={(data) => { this.setState({ dataGet: data }) }} />
                 <FlatList
                     data={this.state.dataBiodata}
                     renderItem={this.renderItem}
@@ -78,7 +107,7 @@ const styles = StyleSheet.create({
         backgroundColor: "grey",
         justifyContent: 'center',
         alignItems: 'center',
-        color:'black'
+        color: 'black'
     },
     loginButtonSection: {
         width: '100%',
@@ -86,7 +115,7 @@ const styles = StyleSheet.create({
         backgroundColor: "yellow",
         justifyContent: 'center',
         alignItems: 'center',
-        color:'black'
+        color: 'black'
     },
     loginTextSection: {
         width: '100%',

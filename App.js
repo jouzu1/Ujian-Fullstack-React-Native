@@ -5,6 +5,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import List from './List';
 import Register from './Register';
+import Update from './Update';
 
 
 const Stack = createStackNavigator();
@@ -21,6 +22,9 @@ export class App extends Component {
             <Stack.Screen
             name="Register"
             component={Register} />
+            <Stack.Screen
+            name="Update"
+            component={Update} />
         </Stack.Navigator>
       </NavigationContainer>
     )
