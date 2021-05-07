@@ -24,7 +24,7 @@ public class BiodataController {
 	BiodataRepository biorepo;
 
 //	@CrossOrigin(origins = "http://localhost:3030")
-	@GetMapping("/get")
+	@GetMapping("/")
 	public List<Biodata> getAll() {
 		return (List<Biodata>) this.biorepo.findAll();
 	}
@@ -35,22 +35,22 @@ public class BiodataController {
 		return "Insert berhasil";
 	}
 
-	@GetMapping("/get/nama/{nama}")
+	@GetMapping("/{nama}")
 	public List<Biodata> getAllByNama(@PathVariable String nama) {
 		return (List<Biodata>) this.biorepo.findByNama(nama);
 	}
 	
-	@GetMapping("/get/email/{email}")
+	@GetMapping("/email/{email}")
 	public List<Biodata> getAllByEmail(@PathVariable String email) {
 		return (List<Biodata>) this.biorepo.findByEmail(email);
 	}
 	
-	@GetMapping("/get/phone/{phone}")
+	@GetMapping("/phone/{phone}")
 	public List<Biodata> getAllByPhone(@PathVariable String phone) {
 		return (List<Biodata>) this.biorepo.findByPhone(phone);
 	}
 	
-	@GetMapping("/get/address/{address}")
+	@GetMapping("/address/{address}")
 	public List<Biodata> getAllByAddress(@PathVariable String address) {
 		return (List<Biodata>) this.biorepo.findByAddress(address);
 	}
