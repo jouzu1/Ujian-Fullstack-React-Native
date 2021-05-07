@@ -24,7 +24,7 @@ public class Biodata {
 	private String email;
 	
 	
-	private String phone;
+	private long phone;
 	private String address;
 	
 }
