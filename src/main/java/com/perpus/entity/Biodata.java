@@ -14,13 +14,16 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "Buku")
-public class Buku {
+@Table(name = "Biodata")
+public class Biodata {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
-	private String namaBuku;
-	private int jumlahHalaman;
-	private String namaPenulis;
+	private String nama;
+	private String email;
+	
+	
+	private String phone;
+	private String address;
 }

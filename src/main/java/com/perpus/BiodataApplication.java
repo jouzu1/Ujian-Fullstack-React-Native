@@ -8,16 +8,16 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-import com.perpus.entity.Buku;
-import com.perpus.repository.BukuRepository;
+import com.perpus.entity.Biodata;
+import com.perpus.repository.BiodataRepository;
 
 @SpringBootApplication
-public class PerpustakaanBaruApplication implements CommandLineRunner{
+public class BiodataApplication implements CommandLineRunner{
 
 	@Autowired
-	BukuRepository bukurepo;
+	BiodataRepository biorepo;
 	public static void main(String[] args) {
-		SpringApplication.run(PerpustakaanBaruApplication.class, args);
+		SpringApplication.run(BiodataApplication.class, args);
 	}
 	
 	@Bean
@@ -33,12 +33,13 @@ public class PerpustakaanBaruApplication implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
-//		Buku buku = new Buku();
-//		buku.setNamaBuku("Max Payne");
-//		buku.setJumlahHalaman(255);
-//		buku.setNamaPenulis("Jouzu");
-		
-//		this.bukurepo.save(buku);
+//		Biodata biodata = new Biodata();
+//		biodata.setNama("Jouzu");
+//		biodata.setEmail("jouzu1@gmail.com");
+//		biodata.setPhone("085156025085");
+//		biodata.setAddress("Jalan Jagakarsa");
+//		
+//		this.biorepo.save(biodata);
 	}	
 
 }

@@ -13,31 +13,31 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.perpus.entity.Buku;
-import com.perpus.repository.BukuRepository;
+import com.perpus.entity.Biodata;
+import com.perpus.repository.BiodataRepository;
 
 @CrossOrigin(origins = "http://localhost:3030")
 @RestController
 @RequestMapping("/buku")
-public class BukuController {
+public class BiodataController {
 	@Autowired
-	BukuRepository bukurepo;
+	BiodataRepository bukurepo;
 
 	@CrossOrigin(origins = "http://localhost:3030")
 	@GetMapping("/get")
-	public List<Buku> getAll() {
-		return (List<Buku>) this.bukurepo.findAll();
+	public List<Biodata> getAll() {
+		return (List<Biodata>) this.bukurepo.findAll();
 	}
 
 	@PostMapping("/add")
-	public String addBuku(@RequestBody Buku buku) {
+	public String addBuku(@RequestBody Biodata buku) {
 		this.bukurepo.save(buku);
 		return "Insert berhasil";
 	}
 
 	@GetMapping("/get/{title}")
-	public List<Buku> getAllByNamaBuku(@PathVariable("title") String title) {
-		return (List<Buku>) this.bukurepo.findByNamaBuku(title);
+	public List<Biodata> getAllByNamaBuku(@PathVariable("title") String title) {
+		return (List<Biodata>) this.bukurepo.findByNamaBuku(title);
 	}
 
 	@DeleteMapping("/delete/{id}")
@@ -46,7 +46,7 @@ public class BukuController {
 		return "Berhasil Dihapus";
 	}
 	@PutMapping("/update/{id}")
-	public String updateBuku(@PathVariable String id, @RequestBody Buku buku) {
+	public String updateBuku(@PathVariable String id, @RequestBody Biodata buku) {
 		buku.setId(Long.parseLong(id));
 		this.bukurepo.save(buku);
 		return "Berhasil Di Update";
