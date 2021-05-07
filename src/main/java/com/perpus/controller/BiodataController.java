@@ -39,6 +39,21 @@ public class BiodataController {
 	public List<Biodata> getAllByNama(@PathVariable String nama) {
 		return (List<Biodata>) this.biorepo.findByNama(nama);
 	}
+	
+	@GetMapping("/get/{email}")
+	public List<Biodata> getAllByEmail(@PathVariable String email) {
+		return (List<Biodata>) this.biorepo.findByEmail(email);
+	}
+	
+	@GetMapping("/get/{phone}")
+	public List<Biodata> getAllByPhone(@PathVariable String phone) {
+		return (List<Biodata>) this.biorepo.findByPhone(phone);
+	}
+	
+	@GetMapping("/get/{address}")
+	public List<Biodata> getAllByAddress(@PathVariable String address) {
+		return (List<Biodata>) this.biorepo.findByAddress(address);
+	}
 
 	@DeleteMapping("/delete/{id}")
 	public String getDelete(@PathVariable String id){
