@@ -22,7 +22,7 @@ export class Update extends Component {
 
     handleUpdate() {
         console.log(this.state)
-        axios.put(`http://526249c8fbe3.ngrok.io/biodata/update/${this.state.id}`, this.state)
+        axios.put(`http://5245fb3907aa.ngrok.io/biodata/update/${this.state.id}`, this.state)
             .then((res) => {
                 // console.log(res)
                 // alert("Data Berhasil Dimasukkan")
