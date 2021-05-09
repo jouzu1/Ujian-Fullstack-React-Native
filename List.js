@@ -51,6 +51,7 @@ export class List extends Component {
                 this.setState({ dataBiodata: res.data });
             });
     };
+    
 
     test=()=>{
         axios.get(`http://c193629ba43e.ngrok.io/biodata/`)
@@ -96,7 +97,7 @@ export class List extends Component {
             }} style={styles.bluebutton}><Text>Delete Data</Text></TouchableOpacity>
         </SafeAreaView>
     );
-
+    
     render() {
         return (
             <SafeAreaView style={styles.container}>
@@ -110,7 +111,7 @@ export class List extends Component {
                     <Picker.Item label="Phone" value="phone" />
                     <Picker.Item label="Address" value="address" />
                 </Picker>
-                <TextInput placeholder="Cari" style={styles.loginButtonSection1} onChangeText={(data) => { this.setState({ dataGet: data }) }} />
+                <TextInput placeholder="Cari" style={styles.loginButtonSection1} onChangeText={(data) => { if(this.state.picker=="name"){this.setState({ dataGet: data })} }} />
                 <FlatList
                     data={this.state.dataBiodata}
                     renderItem={this.renderItem}
