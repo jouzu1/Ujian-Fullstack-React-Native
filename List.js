@@ -23,7 +23,7 @@ export class List extends Component {
         this.state = {
             dataBiodata: [],
             dataGet: "",
-            picker: []
+            picker: "",
         };
     }
 
@@ -33,6 +33,7 @@ export class List extends Component {
     componentDidMount() {
         // this.getData();
         this.findData();
+        // this.test();
         console.log(this.state.picker);
     }
 
@@ -44,12 +45,19 @@ export class List extends Component {
 
 
     findData = () => {
-        axios.get(` http://c193629ba43e.ngrok.io/biodata/${this.state.dataGet}`)
+        axios.get(`http://c193629ba43e.ngrok.io/biodata/${this.state.dataGet}`)
             .then((res) => {
                 //   console.log(res.data);
                 this.setState({ dataBiodata: res.data });
             });
     };
+
+    test=()=>{
+        axios.get(`http://c193629ba43e.ngrok.io/biodata/`)
+        .then((res)=>{
+            console.log(res.data);
+        })
+    }
 
     deleteData = (id) => {
         // axios.get(' http://5189d5f9efe2.ngrok.io/buku/get')
@@ -91,17 +99,17 @@ export class List extends Component {
 
     render() {
         return (
-            <SafeAreaView>
-                {/* <Picker
+            <SafeAreaView style={styles.container}>
+                <Picker
                     selectedValue={this.state.picker}
                     style={{ height: 50, width: 150 }}
                     onValueChange={(itemValue, itemIndex) => this.setState({picker : itemValue})}
                 >
-                    <Picker.Item label="Name" value="Name" />
-                    <Picker.Item label="Email" value="Email" />
-                    <Picker.Item label="Phone" value="Phone" />
-                    <Picker.Item label="Address" value="Address" />
-                </Picker> */}
+                    <Picker.Item label="Name" value="name" />
+                    <Picker.Item label="Email" value="email" />
+                    <Picker.Item label="Phone" value="phone" />
+                    <Picker.Item label="Address" value="address" />
+                </Picker>
                 <TextInput placeholder="Cari" style={styles.loginButtonSection1} onChangeText={(data) => { this.setState({ dataGet: data }) }} />
                 <FlatList
                     data={this.state.dataBiodata}
@@ -125,7 +133,7 @@ const styles = StyleSheet.create({
     },
     loginButtonSection: {
         width: '100%',
-        height: '30%',
+        height: '10%',
         // flex:1,
         backgroundColor: "yellow",
         justifyContent: 'center',
