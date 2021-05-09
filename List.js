@@ -35,12 +35,14 @@ export class List extends Component {
         this.findData();
         // this.test();
         console.log(this.state.picker);
+        console.log(this.state.dataGet);
     }
 
     componentDidUpdate() {
         // this.getData();
         this.findData();
         console.log(this.state.picker);
+        console.log(this.state.dataGet);
     }
 
 
@@ -111,7 +113,10 @@ export class List extends Component {
                     <Picker.Item label="Phone" value="phone" />
                     <Picker.Item label="Address" value="address" />
                 </Picker>
-                <TextInput placeholder="Cari" style={styles.loginButtonSection1} onChangeText={(data) => { if(this.state.picker=="name"){this.setState({ dataGet: data })} }} />
+                <TextInput placeholder="Cari" style={styles.loginButtonSection1} onChangeText={(data) => { if(this.state.picker=="name"){this.setState({ dataGet: data })} }} value={this.state.dataGet}/>
+                {/* <View style={styles.loginButtonSection2}>
+                    <Button title="Search"  />
+                </View> */}
                 <FlatList
                     data={this.state.dataBiodata}
                     renderItem={this.renderItem}
@@ -137,6 +142,15 @@ const styles = StyleSheet.create({
         height: '10%',
         // flex:1,
         backgroundColor: "yellow",
+        justifyContent: 'center',
+        alignItems: 'center',
+        color: 'black'
+    },
+    loginButtonSection2: {
+        width: '100%',
+        height: '10%',
+        // flex:1,
+        // backgroundColor: "yellow",
         justifyContent: 'center',
         alignItems: 'center',
         color: 'black'
