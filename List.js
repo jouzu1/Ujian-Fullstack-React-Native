@@ -44,7 +44,7 @@ export class List extends Component {
 
 
     findData = () => {
-        axios.get(`http://5245fb3907aa.ngrok.io/biodata/${this.state.dataGet}`)
+        axios.get(` http://c193629ba43e.ngrok.io/biodata/${this.state.dataGet}`)
             .then((res) => {
                 //   console.log(res.data);
                 this.setState({ dataBiodata: res.data });
@@ -53,7 +53,7 @@ export class List extends Component {
 
     deleteData = (id) => {
         // axios.get(' http://5189d5f9efe2.ngrok.io/buku/get')
-        axios.delete(`http://5245fb3907aa.ngrok.io/biodata/delete/${id}`)
+        axios.delete(` http://c193629ba43e.ngrok.io/biodata/delete/${id}`)
             .then((res) => {
                 // console.log(res)
                 alert(res.data)
@@ -92,7 +92,7 @@ export class List extends Component {
     render() {
         return (
             <SafeAreaView>
-                <Picker
+                {/* <Picker
                     selectedValue={this.state.picker}
                     style={{ height: 50, width: 150 }}
                     onValueChange={(itemValue, itemIndex) => this.setState({picker : itemValue})}
@@ -101,7 +101,7 @@ export class List extends Component {
                     <Picker.Item label="Email" value="Email" />
                     <Picker.Item label="Phone" value="Phone" />
                     <Picker.Item label="Address" value="Address" />
-                </Picker>
+                </Picker> */}
                 <TextInput placeholder="Cari" style={styles.loginButtonSection1} onChangeText={(data) => { this.setState({ dataGet: data }) }} />
                 <FlatList
                     data={this.state.dataBiodata}
@@ -126,6 +126,7 @@ const styles = StyleSheet.create({
     loginButtonSection: {
         width: '100%',
         height: '30%',
+        // flex:1,
         backgroundColor: "yellow",
         justifyContent: 'center',
         alignItems: 'center',

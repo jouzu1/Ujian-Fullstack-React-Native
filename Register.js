@@ -16,7 +16,7 @@ export class Register extends Component {
 
     handleAdd() {
         // console.log(this.state)
-        axios.post(`http://5245fb3907aa.ngrok.io/biodata/add`, this.state)
+        axios.post(`http://c193629ba43e.ngrok.io/biodata/add`, this.state)
             .then((res) => {
                 // console.log(res)
                 // alert("Data Berhasil Dimasukkan")
