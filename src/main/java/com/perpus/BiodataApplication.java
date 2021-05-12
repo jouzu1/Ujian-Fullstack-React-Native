@@ -33,12 +33,12 @@ public class BiodataApplication implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
-		Biodata biodata = new Biodata();
-		biodata.setNama("Jouzu");
-		biodata.setEmail("test");
-		biodata.setAddress("Test");
-		
-		this.biorepo.save(biodata);
+//		Biodata biodata = new Biodata();
+//		biodata.setNama("Jouzu");
+//		biodata.setEmail("test");
+//		biodata.setAddress("Test");
+//		
+//		this.biorepo.save(biodata);
 	}	
 
 }
