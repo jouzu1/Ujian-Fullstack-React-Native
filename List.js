@@ -21,9 +21,9 @@ export class List extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            dataBiodata: [],
-            dataGet: "",
-            picker: "",
+            data: [],
+            type:'nama',
+            value:''
         };
     }
 
@@ -32,39 +32,57 @@ export class List extends Component {
     // }
     componentDidMount() {
         // this.getData();
-        this.findData();
+        // this.findData();
+        this.getData();
         // this.test();
-        console.log(this.state.picker);
-        console.log(this.state.dataGet);
+        console.log(this.state.type);
+        // console.log(this.state.dataGet);
     }
 
     componentDidUpdate() {
         // this.getData();
-        this.findData();
-        console.log(this.state.picker);
-        console.log(this.state.dataGet);
+        // this.findData();
+        console.log(this.state.type);
+        console.log(this.state.value);
+        // console.log(this.state.picker);
+        // console.log(this.state.dataGet);
     }
 
 
     findData = () => {
-        axios.get(`http://c193629ba43e.ngrok.io/biodata/${this.state.dataGet}`)
+        axios.get(`http://26c498514c41.ngrok.io/biodata/searchby/${this.state.type}/${this.state.value}`)
             .then((res) => {
-                //   console.log(res.data);
-                this.setState({ dataBiodata: res.data });
+                // console.log(res.data);
+                this.setState({ data: res.data });
+            }).catch((error)=>{
+                alert(error.message)
             });
     };
-    
 
-    test=()=>{
-        axios.get(`http://c193629ba43e.ngrok.io/biodata/`)
-        .then((res)=>{
-            console.log(res.data);
+    getData =()=>{
+        //Make a request for a user with a given ID
+        axios.get(`http://26c498514c41.ngrok.io/biodata/`)
+        .then( (response) => {
+          // console.log(response.data")
+          let data=response.data;   
+          this.setState({data:data}); 
+        })
+        .catch(function (error) {
+        // handle error
+         console.log(error);
         })
     }
 
+    // test=()=>{
+    //     axios.get(`http://c193629ba43e.ngrok.io/biodata/`)
+    //     .then((res)=>{
+    //         console.log(res.data);
+    //     })
+    // }
+
     deleteData = (id) => {
         // axios.get(' http://5189d5f9efe2.ngrok.io/buku/get')
-        axios.delete(` http://c193629ba43e.ngrok.io/biodata/delete/${id}`)
+        axios.delete(`http://26c498514c41.ngrok.io/biodata/delete/${id}`)
             .then((res) => {
                 // console.log(res)
                 alert(res.data)
@@ -104,21 +122,23 @@ export class List extends Component {
         return (
             <SafeAreaView style={styles.container}>
                 <Picker
-                    selectedValue={this.state.picker}
+                    selectedValue={this.state.type}
                     style={{ height: 50, width: 150 }}
-                    onValueChange={(itemValue, itemIndex) => this.setState({picker : itemValue})}
+                    onValueChange={(itemValue, itemIndex) => this.setState({type : itemValue})}
                 >
-                    <Picker.Item label="Name" value="name" />
+                    <Picker.Item label="Name" value="nama" />
                     <Picker.Item label="Email" value="email" />
                     <Picker.Item label="Phone" value="phone" />
                     <Picker.Item label="Address" value="address" />
                 </Picker>
-                <TextInput placeholder="Cari" style={styles.loginButtonSection1} onChangeText={(data) => { if(this.state.picker=="name"){this.setState({ dataGet: data })} }} value={this.state.dataGet}/>
+                {/* <TextInput placeholder="Cari" style={styles.loginButtonSection1} onChangeText={(data) => {this.setState({ value: data })}} value={this.state.value}/> */}
+                <TextInput TextInput placeholder="Cari User" onChangeText={(data)=>{this.setState({value:data})}} value={this.state.value}/>
+                <TouchableOpacity onPress={()=>{this.findData()}} style={styles.button}><Text style={styles.title}>Cari</Text></TouchableOpacity>
                 {/* <View style={styles.loginButtonSection2}>
-                    <Button title="Search"  />
+                    <Button title="Search"  onPress={()=>{this.findData()}}/>
                 </View> */}
                 <FlatList
-                    data={this.state.dataBiodata}
+                    data={this.state.data}
                     renderItem={this.renderItem}
                     keyExtractor={item => item.id}
                 />
