@@ -35,25 +35,12 @@ public class BiodataController {
 		return "Insert berhasil";
 	}
 
-	@GetMapping("/{nama}")
-	public List<Biodata> getAllByNama(@PathVariable String nama) {
-		return (List<Biodata>) this.biorepo.findByNama(nama);
+	@GetMapping("/searchby/{type}/{value}")
+	public List<Biodata> getSearchBy(@PathVariable("type")String type, @PathVariable("value") String value) {
+		return biorepo.findBySearchBy(type, value);
 	}
 	
-	@GetMapping("/email/{email}")
-	public List<Biodata> getAllByEmail(@PathVariable String email) {
-		return (List<Biodata>) this.biorepo.findByEmail(email);
-	}
-	
-	@GetMapping("/phone/{phone}")
-	public List<Biodata> getAllByPhone(@PathVariable String phone) {
-		return (List<Biodata>) this.biorepo.findByPhone(phone);
-	}
-	
-	@GetMapping("/address/{address}")
-	public List<Biodata> getAllByAddress(@PathVariable String address) {
-		return (List<Biodata>) this.biorepo.findByAddress(address);
-	}
+
 
 	@DeleteMapping("/delete/{id}")
 	public String getDelete(@PathVariable String id){

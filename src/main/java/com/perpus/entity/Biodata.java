@@ -24,7 +24,11 @@ public class Biodata {
 	private String email;
 	
 	
-	private long phone;
+	private String phone;
 	private String address;
+	public void setNama(String nama2) {
+		// TODO Auto-generated method stub
+		this.nama = nama2;
+	}
 	
 }
