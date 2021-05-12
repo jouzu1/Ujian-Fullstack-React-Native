@@ -12,7 +12,7 @@ Cara menemukan aplikasi yang sudah di release
         |--build
             |--outputs
                 |--apk
-                    |--app_release.apk
+                    |--app-release.apk
 ```
 
   
