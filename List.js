@@ -13,8 +13,8 @@ import {
     Alert,
     StatusBar,
     Button,
-} from 'react-native';  
-import {Picker} from '@react-native-picker/picker';
+} from 'react-native';
+import { Picker } from '@react-native-picker/picker';
 import axios from 'axios';
 
 export class List extends Component {
@@ -22,8 +22,8 @@ export class List extends Component {
         super(props);
         this.state = {
             data: [],
-            type:'nama',
-            value:''
+            type: 'nama',
+            value: ''
         };
     }
 
@@ -54,23 +54,23 @@ export class List extends Component {
             .then((res) => {
                 // console.log(res.data);
                 this.setState({ data: res.data });
-            }).catch((error)=>{
+            }).catch((error) => {
                 alert(error.message)
             });
     };
 
-    getData =()=>{
+    getData = () => {
         //Make a request for a user with a given ID
         axios.get(`http://26c498514c41.ngrok.io/biodata/`)
-        .then( (response) => {
-          // console.log(response.data")
-          let data=response.data;   
-          this.setState({data:data}); 
-        })
-        .catch(function (error) {
-        // handle error
-         console.log(error);
-        })
+            .then((response) => {
+                // console.log(response.data")
+                let data = response.data;
+                this.setState({ data: data });
+            })
+            .catch(function (error) {
+                // handle error
+                console.log(error);
+            })
     }
 
     // test=()=>{
@@ -117,14 +117,14 @@ export class List extends Component {
             }} style={styles.bluebutton}><Text>Delete Data</Text></TouchableOpacity>
         </SafeAreaView>
     );
-    
+
     render() {
         return (
             <SafeAreaView style={styles.container}>
                 <Picker
                     selectedValue={this.state.type}
-                    style={{ height: 50, width: 150 }}
-                    onValueChange={(itemValue, itemIndex) => this.setState({type : itemValue})}
+                    style={{ height: 50, flex: 1 }}
+                    onValueChange={(itemValue, itemIndex) => this.setState({ type: itemValue })}
                 >
                     <Picker.Item label="Name" value="nama" />
                     <Picker.Item label="Email" value="email" />
@@ -132,8 +132,11 @@ export class List extends Component {
                     <Picker.Item label="Address" value="address" />
                 </Picker>
                 {/* <TextInput placeholder="Cari" style={styles.loginButtonSection1} onChangeText={(data) => {this.setState({ value: data })}} value={this.state.value}/> */}
-                <TextInput TextInput placeholder="Cari User" onChangeText={(data)=>{this.setState({value:data})}} value={this.state.value}/>
-                <TouchableOpacity onPress={()=>{this.findData()}} style={styles.button}><Text style={styles.title}>Cari</Text></TouchableOpacity>
+                <View style={{flexDirection: "row",flexWrap: "wrap"}}>
+                    <TextInput TextInput placeholder="Cari User" onChangeText={(data) => { this.setState({ value: data }) }} value={this.state.value} />
+                    <TouchableOpacity onPress={() => { this.getData() }} style={styles.button}><Text style={styles.title}>Refresh</Text></TouchableOpacity>
+                </View>
+                <TouchableOpacity onPress={() => { this.findData() }} style={styles.button}><Text style={styles.title}>Cari</Text></TouchableOpacity>
                 {/* <View style={styles.loginButtonSection2}>
                     <Button title="Search"  onPress={()=>{this.findData()}}/>
                 </View> */}
