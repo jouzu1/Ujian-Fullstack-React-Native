@@ -6,6 +6,8 @@ import { createStackNavigator } from '@react-navigation/stack';
 import List from './List';
 import Register from './Register';
 import Update from './Update';
+import { Provider } from 'react-redux';
+import store from './src/store/store'
 
 
 const Stack = createStackNavigator();
@@ -14,7 +16,8 @@ const Stack = createStackNavigator();
 export class App extends Component {
   render() {
     return (
-      <NavigationContainer>
+      <Provider store={store}>
+        <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen
             name="List"
@@ -27,6 +30,7 @@ export class App extends Component {
             component={Update} />
         </Stack.Navigator>
       </NavigationContainer>
+      </Provider>
     )
   }
 }

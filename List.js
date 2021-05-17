@@ -16,6 +16,7 @@ import {
 } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import axios from 'axios';
+import { connect } from 'react-redux'
 
 export class List extends Component {
     constructor(props) {
@@ -218,4 +219,9 @@ const styles = StyleSheet.create({
 })
 
 
-export default List;
+const mapStateToProps = (state) => ({
+    getData:state.reducer
+})
+
+export default connect(mapStateToProps)(List);
+// export default List;
